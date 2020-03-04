@@ -1,0 +1,104 @@
+.productos-class{
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #f2f8ff;
+    background: rgba(0,0,0,.5);
+}
+
+.icon::before {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  .carousel-control-next-icon {
+    background-image: none;
+  }
+
+  .carousel-control-prev-icon {
+    background-image: none;
+  }
+
+  .carousel-control-next-icon::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f101";
+    font-size: 1.8em;
+    color: #000;
+  }
+
+  .carousel-control-prev-icon::before{
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f100";
+    font-size: 1.8em;
+    color: #000;
+  }
+
+  .carousel-indicators li {
+    background-color: black;
+  }
+ 
+  /*INICIO CARDS*/
+  .testimonial-card{
+    width: 18em;
+  }
+
+  .testimonial-card .card-up {
+    height: 120px;
+    overflow: hidden;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+  }
+
+  .indigo.lighten-1 {
+    background-color: #fff !important;
+  }
+
+  .testimonial-card .avatar {
+    width: 120px;
+    margin-top: -60px;
+    overflow: hidden;
+    border: 5px solid #fff;
+    border-radius: 50%;
+  }
+
+  .rounded-circle {
+    border-radius: 50% !important;
+  }
+
+  .testimonial-card .avatar img {
+    width: 100%;
+  }
+
+  .testimonial-card .card-body {
+    text-align: center;
+    margin-top: -1.5em;
+  }
+/* FIN CARDS */
+
+  .carousel-indicators {
+    bottom: -35px !important;
+  }
+
+  .shadow-danger{
+    box-shadow: 0px 0px 7px 0px rgba(200,35,51,1);
+  }
+
+  .orden-class{
+    border-radius: 0.1em;
+    width: 2em;
+    background: #343a40;
+    color: #fff;
+    margin-left: 6.2em;
+  }

@@ -1,0 +1,27 @@
+.nav-class{
+    background: #fff;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+}
+
+.btn-primary{
+    background-color:#0CACE0;
+    border-color:#0CACE0;
+}
+
+.btn-primary:hover{
+    background-color: #0278A0;
+    border-color:#0278A0;
+}
+
+.tablas-class{
+    height: 35em;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+.table-hover tbody tr:hover {
+    color: #212529;
+    background-color: #e7f7fd;
+    cursor: pointer;
+}
+
