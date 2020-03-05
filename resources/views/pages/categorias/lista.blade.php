@@ -11,7 +11,20 @@
       box-shadow: 0 0 0 0.2rem rgba(95, 99, 103, 0.25);
     }
 </style>
-  
+
+<div class="row d-flex justify-content-start mr-2 mb-2">
+  <div class="col-4">
+    <button class="btn btn-outline-danger"
+            onclick="location.href='{{ route('categoria.pdf') }}'">
+      Exportar en PDF <i class="fas fa-file-pdf"></i>
+    </button>
+    <button class="btn btn-outline-success"
+            onclick="location.href='{{ route('categoria.excel') }}'">
+      Exportar en Excel <i class="fas fa-file-excel"></i>
+    </button>
+  </div>
+</div>
+
 <input type="hidden" id="urlUpd" value="{{route('categoria.actualizar')}}">
 <input type="hidden" id="urlDel" value="{{route('categoria.eliminar')}}">
 <meta name="csrf-token" content="{{ csrf_token() }}" />

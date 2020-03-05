@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\UnidadExport;
+use App\Exports\UsersExport;
 use App\UnidadModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class UnidadController extends Controller
 {
@@ -100,5 +103,15 @@ class UnidadController extends Controller
             
             return response()->json(['html'=>$html]); 
         }
+    }
+
+    public function pdf(UnidadExport $unidadExport){
+
+        return $unidadExport -> download('unidades.pdf');
+    }
+
+    public function excel(UnidadExport $unidadExport){
+
+        return $unidadExport -> download('unidades.xlsx');
     }
 }

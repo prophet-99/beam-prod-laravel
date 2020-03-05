@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CategoriaModel;
+use App\Exports\CategoriaExport;
 use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
@@ -102,5 +103,15 @@ class CategoriaController extends Controller
             
             return response()->json(['html'=>$html]); 
         }
+    }
+
+    public function pdf(CategoriaExport $categoriaExport){
+
+        return $categoriaExport -> download('categorias.pdf');
+    }
+
+    public function excel(CategoriaExport $categoriaExport){
+
+        return $categoriaExport -> download('categorias.xlsx');
     }
 }

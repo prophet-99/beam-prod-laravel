@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CategoriaModel;
+use App\Exports\ProductoExport;
 use App\MarcaModel;
 use App\ProductoModel;
 use App\UnidadModel;
@@ -131,6 +132,16 @@ class ProductoController extends Controller
             
             return response()->json(['html' => $html]); 
         }
+    }
+
+    public function pdf(ProductoExport $productoExport){
+
+        return $productoExport -> download('productos.pdf');
+    }
+
+    public function excel(ProductoExport $productoExport){
+
+        return $productoExport -> download('productos.xlsx');
     }
 
     private function getProductos(){

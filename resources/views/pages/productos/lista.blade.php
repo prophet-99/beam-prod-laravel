@@ -12,6 +12,19 @@
   }
 </style>
 
+<div class="row d-flex justify-content-start mr-2 mb-2">
+  <div class="col-4">
+    <button class="btn btn-outline-danger"
+            onclick="location.href='{{ route('producto.pdf') }}'">
+      Exportar en PDF <i class="fas fa-file-pdf"></i>
+    </button>
+    <button class="btn btn-outline-success"
+            onclick="location.href='{{ route('producto.excel') }}'">
+      Exportar en Excel <i class="fas fa-file-excel"></i>
+    </button>
+  </div>
+</div>
+
 <input type="hidden" id="urlUpd" value="{{route('producto.actualizar')}}">
 <input type="hidden" id="urlDel" value="{{route('producto.eliminar')}}">
 <meta name="csrf-token" content="{{ csrf_token() }}" />

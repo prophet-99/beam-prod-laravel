@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\MarcaExport;
 use App\MarcaModel;
 use Illuminate\Http\Request;
 
@@ -100,5 +101,15 @@ class MarcaController extends Controller
             
             return response()->json(['html'=>$html]); 
         } 
+    }
+
+    public function pdf(MarcaExport $marcaExport){
+
+        return $marcaExport -> download('marcas.pdf');
+    }
+
+    public function excel(MarcaExport $marcaExport){
+
+        return $marcaExport -> download('marcas.xlsx');
     }
 }
