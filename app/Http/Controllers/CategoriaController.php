@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CategoriaModel;
 use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
@@ -11,9 +12,14 @@ class CategoriaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(Request $request, CategoriaModel $categoriaModel){
+
+        if($request->ajax()){
+            $categorias = $categoriaModel -> where('eliminar', false) -> get();
+            $html = view('pages.categorias.lista', compact('categorias'))->render();
+            
+            return response()->json(['html' => $html]);
+        }
     }
 
     /**
@@ -36,31 +42,16 @@ class CategoriaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+    public function store(CategoriaModel $categoriaModel){
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        $categoriaModel -> create([
+                    'descripcion' => request('nombre'),
+                    'abreviatura' => request('abrev'),
+                    'orden' => request('orden'),
+                    'eliminar' => false
+        ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return redirect()->route('init.productos')->with('alert', 'true');      
     }
 
     /**
@@ -70,9 +61,24 @@ class CategoriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, CategoriaModel $categoriaModel){
+
+        if($request->ajax()){
+
+            $categoria = $categoriaModel->find(request('id'));
+            $categoria -> update([
+                    'descripcion' => request('nombre'),
+                    'abreviatura' => request('abrev'),
+                    'orden' => request('orden'),
+                    'eliminar' => false    
+            ]);
+
+            $categorias = $categoriaModel -> where('eliminar', false) -> get();
+
+            $html = view('pages.categorias.lista', compact('categorias'))->render();  
+            
+            return response()->json(['html'=>$html]); 
+        }
     }
 
     /**
@@ -81,8 +87,20 @@ class CategoriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy(Request $request, CategoriaModel $categoriaModel){
+
+        if($request->ajax()){
+
+            $categoria = $categoriaModel->find(request('id'));
+            $categoria -> update([
+                'eliminar' => true    
+            ]);
+
+            $categorias = $categoriaModel -> where('eliminar', false) -> get();
+
+            $html = view('pages.categorias.lista', compact('categorias'))->render();  
+            
+            return response()->json(['html'=>$html]); 
+        }
     }
 }

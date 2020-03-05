@@ -1,6 +1,6 @@
 <h6 class="text-center">Registrar Marca</h6>
 
-<form id="idFormMarca" method="post" action="index.php" onsubmit="return validarMarca();">
+<form id="idFormMarca" method="post" action="{{ route('marca.store') }}" onsubmit="return validarMarca();">
     @csrf
     
   <div class="form-group row">

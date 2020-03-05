@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('css/principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/productos.css') }}">
     <link rel="stylesheet" href="{{ asset('sweet-alert/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/datatables.min.css') }}">
 </head>
 <body>
     @include('partials/nav')
@@ -23,6 +24,6 @@
     <script src="{{ asset('js/validaciones.js') }}"></script>
     <script src="{{ asset('sweet-alert/sweetalert2.all.min.js') }}"></script>
     <script src="{{ asset('js/update-delete.js') }}"></script>
-    
+    <script src="{{ asset('js/datatables.min.js') }}"></script>
 </body>
 </html>

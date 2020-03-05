@@ -15,7 +15,7 @@ class UnidadController extends Controller
     public function index(Request $request, UnidadModel $unidadModel){
        
         if($request->ajax()){
-            $unidades = $unidadModel -> where('eliminar', false) -> paginate('7');
+            $unidades = $unidadModel -> where('eliminar', false) -> get();
             $html = view('pages.unidades.lista', compact('unidades'))->render();
             
             return response()->json(['html' => $html]);
@@ -54,28 +54,6 @@ class UnidadController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id){
-        
-
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -93,11 +71,11 @@ class UnidadController extends Controller
                 'eliminar' => false    
             ]);
 
-            $unidades = $unidadModel -> where('eliminar', false) -> paginate('7');
+            $unidades = $unidadModel -> where('eliminar', false) -> get();
 
             $html = view('pages.unidades.lista', compact('unidades'))->render();  
             
-            return response()->json(['html'=>$html, 'unit'=>$unidades]); 
+            return response()->json(['html'=>$html]); 
         }
     }
 
@@ -116,7 +94,7 @@ class UnidadController extends Controller
                 'eliminar' => true    
             ]);
 
-            $unidades = $unidadModel -> where('eliminar', false) -> paginate('7');
+            $unidades = $unidadModel -> where('eliminar', false) -> get();
 
             $html = view('pages.unidades.lista', compact('unidades'))->render();  
             

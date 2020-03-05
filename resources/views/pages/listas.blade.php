@@ -20,7 +20,9 @@
     <div class="row m-3">
         <div class="col-12 tablas-class">
             <div class="table-responsive" id="renderTablas">
-                 
+                
+                @include('pages.jumbotronlst')
+
             </div>
         </div>
     </div>

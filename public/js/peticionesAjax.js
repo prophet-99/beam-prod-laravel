@@ -5,7 +5,7 @@ $(document).ready(function(){
         function(res){
 
             $("#idForms").html(res.html);
-        });
+        }); 
 });
 
 function cargarPage(url){
@@ -33,9 +33,12 @@ function showAlertCreate(msj){
 function cargarLista(ruta){
 
     $.get( ruta, 
-        function(res){
+           (res) => {
 
             $("#renderTablas").html(res.html);
+
+            //inicializa filtros tablas
+            $('#table_lista').DataTable();   
         });
 
 }

@@ -1,6 +1,6 @@
 <h6 class="text-center">Registrar Categoría</h6>
 
-<form id="idFormCategoria" method="post" action="index.php" onsubmit="return validarCategoria();"> 
+<form id="idFormCategoria" method="post" action="{{ route('categoria.store') }}" onsubmit="return validarCategoria();"> 
     @csrf
     
   <div class="form-group row">

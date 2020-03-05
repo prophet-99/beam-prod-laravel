@@ -35,25 +35,29 @@ function buttonsHiddenCategoria(idParam){
 }
 
 function updateCategoria(idParam){
-    var formData = new FormData();
-    var req = new XMLHttpRequest();
 
-    formData.append("upd", true);
-    formData.append("id", idParam);
-    formData.append("desc", document.getElementById("desc" + idParam).innerHTML);
-    formData.append("abrev", document.getElementById("abrev" + idParam).innerHTML);
-    formData.append("ord", document.getElementById("orden" + idParam).innerHTML);
+    $.post($("#urlUpd")[0].value, 
+    {
+        "_token": $("meta[name='csrf-token']").attr("content"), 
+        "id": idParam,
+        "nombre": document.getElementById("desc" + idParam).innerHTML,
+        "orden": document.getElementById("orden" + idParam).innerHTML,
+        "abrev": document.getElementById("abrev" + idParam).innerHTML
+    }
+    , (res)=>{
     
-    req.open("POST", "index.php",true);
-    req.send(formData);
+        alertActualizado();
+        $("#renderTablas")[0].innerHTML = res.html;
+
+        //inicializa filtros tablas
+        $('#table_lista').DataTable(); 
+        
+    });
 
     buttonsHiddenCategoria(idParam);
     setNotEditableCategoria(idParam);
-
-    setTimeout(() => {
-        cargarLista("2");
-    }, 1000);
 }
+
 
 function setEditableUnidad(idParam){
 
@@ -100,48 +104,15 @@ function updateUnidad(idParam){
     
         alertActualizado();
         $("#renderTablas")[0].innerHTML = res.html;
+
+        //inicializa filtros tablas
+        $('#table_lista').DataTable(); 
         
     });
 
 
     buttonsHiddenUnidad(idParam);
     setNotEditableUnidad(idParam);
-}
-
-function deleteUnidad(idParam){
-
-    Swal.fire({
-        title: '¿Está seguro?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Sí, eliminar',
-        cancelButtonText:'No, cancelar'
-      }).then((result) => {
-        if (result.value) {
-
-            $.post($("#urlDel")[0].value, 
-                    {
-                        "_token": $("meta[name='csrf-token']").attr("content"), 
-                        "id": idParam,
-                    }
-                    , (res)=>{
-                        
-                        $("#renderTablas").fadeOut();
-                        $("#renderTablas")[0].innerHTML = res.html;
-                        $("#renderTablas").fadeIn();
-                    });
-          
-
-          Swal.fire(
-            'Eliminado',
-            'Su registro se ha eliminado correctamente.',
-            'success'
-          );
-        }
-      });
-
 }
 
 function setEditableMarca(idParam){
@@ -177,23 +148,26 @@ function buttonsHiddenMarca(idParam){
 }
 
 function updateMarca(idParam){
-    var formData = new FormData();
-    var req = new XMLHttpRequest();
 
-    formData.append("upd3", true);
-    formData.append("id", idParam);
-    formData.append("desc", document.getElementById("desc" + idParam).innerHTML);
-    formData.append("abrev", document.getElementById("abrev" + idParam).innerHTML);
+    $.post($("#urlUpd")[0].value, 
+    {
+        "_token": $("meta[name='csrf-token']").attr("content"), 
+        "id": idParam,
+        "nombre": document.getElementById("desc" + idParam).innerHTML,
+        "abrev": document.getElementById("abrev" + idParam).innerHTML
+    }
+    , (res)=>{
     
-    req.open("POST", "index.php",true);
-    req.send(formData);
+        alertActualizado();
+        $("#renderTablas")[0].innerHTML = res.html;
+
+        //inicializa filtros tablas
+        $('#table_lista').DataTable(); 
+        
+    });
 
     buttonsHiddenMarca(idParam);
     setNotEditableMarca(idParam);
-
-    setTimeout(() => {
-        cargarLista("3");
-    }, 1000);
 }
 
 function setEditableProducto(idParam){
@@ -257,28 +231,30 @@ function buttonsHiddenProducto(idParam){
 }
 
 function updateProducto(idParam){
-    var formData = new FormData();
-    var req = new XMLHttpRequest();
 
-    formData.append("upd4", true);
-    formData.append("id", idParam);
-    formData.append("desc", document.getElementById("desc" + idParam).innerHTML);
-    formData.append("categ", document.getElementById("selCat" + idParam).value);
-    formData.append("unid", document.getElementById("selUn" + idParam).value);
-    formData.append("marc", document.getElementById("selMar" + idParam).value);
-    formData.append("pVenta", document.getElementById("pVenta" + idParam).innerHTML);
-    formData.append("pCompra", document.getElementById("pCompra" + idParam).innerHTML);
+    $.post($("#urlUpd")[0].value, 
+    {
+        "_token": $("meta[name='csrf-token']").attr("content"), 
+        "id": idParam,
+        "desc": document.getElementById("desc" + idParam).innerHTML,
+        "categ": document.getElementById("selCat" + idParam).value,
+        "unid": document.getElementById("selUn" + idParam).value,
+        "marc": document.getElementById("selMar" + idParam).value,
+        "pVenta": document.getElementById("pVenta" + idParam).innerHTML,
+        "pCompra": document.getElementById("pCompra" + idParam).innerHTML
+    }
+    , (res)=>{
     
-    
-    req.open("POST", "index.php",true);
-    req.send(formData);
+        alertActualizado();
+        $("#renderTablas")[0].innerHTML = res.html;
 
-    buttonsHiddenProducto(idParam);
-    setNotEditableProducto(idParam);
-    
-    setTimeout(() => {
-        cargarLista("4");
-    }, 1000);
+        //inicializa filtros tablas
+        $('#table_lista').DataTable(); 
+        
+    });
+
+    buttonsHiddenMarca(idParam);
+    setNotEditableMarca(idParam);
 }
 
 function alertActualizado(){
@@ -289,4 +265,43 @@ function alertActualizado(){
         showConfirmButton: false,
         timer: 1500
       })
+}
+
+function deleteRegistro(idParam){
+
+    Swal.fire({
+        title: '¿Está seguro?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText:'No, cancelar'
+      }).then((result) => {
+        if (result.value) {
+
+            $.post($("#urlDel")[0].value, 
+                    {
+                        "_token": $("meta[name='csrf-token']").attr("content"), 
+                        "id": idParam,
+                    }
+                    , (res)=>{
+                        
+                        $("#renderTablas").fadeOut();
+                        $("#renderTablas")[0].innerHTML = res.html;
+                        $("#renderTablas").fadeIn();
+
+                        //inicializa filtros tablas
+                        $('#table_lista').DataTable(); 
+                    });
+          
+
+          Swal.fire(
+            'Eliminado',
+            'Su registro se ha eliminado correctamente.',
+            'success'
+          );
+        }
+      });
+
 }
